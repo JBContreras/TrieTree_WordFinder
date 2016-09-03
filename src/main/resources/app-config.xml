@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	
+	<bean id="dictionary" class="com.sye.datastructures.trees.wordfinder.Dictionary">
+		<constructor-arg value="dictionary.txt"/>	
+	</bean>
+		
+	<bean id="wordFinder" class="com.sye.datastructures.trees.wordfinder.WordFinder">		
+		<property name="dictionary" ref="dictionary" />
+		<property name="executorService" ref="executorService" />
+					
+	</bean>	
+	
+    
+    <bean id="executorService" class="org.springframework.scheduling.concurrent.ThreadPoolExecutorFactoryBean">
+        <property name="corePoolSize" value="5" />
+        <property name="maxPoolSize" value="10" />
+        <property name="WaitForTasksToCompleteOnShutdown" value="true" />        
+    </bean>
+	
+	
+</beans>
